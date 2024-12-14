@@ -7,6 +7,7 @@ let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
+options.tableName = 'Users';  // Add this line to set the table name
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -30,11 +31,9 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    options.tableName = 'Users';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
+    return queryInterface.bulkDelete(options.tableName, {
       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
-    }, {});
+    }, options);
   }
 };
-

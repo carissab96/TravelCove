@@ -4,7 +4,6 @@ let options = {};
 if (process.env.NODE_ENV === 'production') { 
   options.schema = process.env.SCHEMA; 
 }
-console.log("Hello, World!");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
